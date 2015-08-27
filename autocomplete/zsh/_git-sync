@@ -1,0 +1,7 @@
+#compdef git-sync
+#description syncs all of your workflows
+_git-sync()
+{
+  _arguments \
+    '--help[display this text]'
+}
