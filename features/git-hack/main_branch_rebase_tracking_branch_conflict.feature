@@ -56,12 +56,11 @@ Feature: git hack: resolving conflicts between main branch and its tracking bran
     Given I resolve the conflict in "conflicting_file"
     When I run `git hack --continue `
     Then it runs the commands
-      | BRANCH      | COMMAND                          |
-      | main        | git rebase --continue            |
-      |             | git push                         |
-      |             | git checkout -b new-feature main |
-      | new-feature | git push -u origin new-feature   |
-      |             | git stash pop                    |
+      | BRANCH      | COMMAND                             |
+      | main        | git rebase --continue               |
+      |             | git checkout -b new-feature main    |
+      | new-feature | git push -u origin main new-feature |
+      |             | git stash pop                       |
     And I end up on the "new-feature" branch
     And I still have my uncommitted file
     And now I have the following commits
@@ -80,11 +79,10 @@ Feature: git hack: resolving conflicts between main branch and its tracking bran
     Given I resolve the conflict in "conflicting_file"
     When I run `git rebase --continue; git hack --continue `
     Then it runs the commands
-      | BRANCH      | COMMAND                          |
-      | main        | git push                         |
-      |             | git checkout -b new-feature main |
-      | new-feature | git push -u origin new-feature   |
-      |             | git stash pop                    |
+      | BRANCH      | COMMAND                             |
+      | main        | git checkout -b new-feature main    |
+      | new-feature | git push -u origin main new-feature |
+      |             | git stash pop                       |
     And I end up on the "new-feature" branch
     And I still have my uncommitted file
     And now I have the following commits

@@ -172,18 +172,38 @@ function run_steps {
 
 
 # Skip any steps on the current branch
-function skip_current_branch_steps {
-  local file="$1"
+function skip_branch_steps {
+  local branch_name=$1
+  local file="$2"
 
-  while [ "$(has_lines "$file")" = true ]; do
-    if [[ "$(peek_line "$file")" =~ ^checkout ]]; then
-      # Add empty line to file to ensure no step if lost
-      prepend_to_file "" "$file"
-      break
-    else
-      remove_line "$file"
+  echo $branch_name
+  cat $file
+  echo
+
+  local checkouts;
+  read -a checkouts <<< "$(grep -n checkout "$file")"
+  for index in ${!checkouts[@]}; do
+    local checkout=${checkouts[$index]}
+    local checkout_line_number="$(echo "$checkout" | cut -f 1 -d ":")"
+    local checkout_branch_name="$(echo "$checkout" | cut -f 2 -d ":" | sed "s/checkout //")"
+    if [ "$checkout_branch_name" = "$branch_name" ]; then
+      local end_line_number="$"
+      local next_checkout=${checkouts[(($index + 1))]}
+      if [ -n "$next_checkout" ]; then
+        end_line_number="$(echo "$next_checkout" | cut -f 1 -d ":")"
+      fi
+      local branch_steps_to_remove
+      read -a branch_steps_to_remove <<< "$(sed -n "$checkout_line_number,$end_line_number p" $file | grep -n reset_to_sha)"
+      for branch_step_to_remove in ${branch_steps_to_remove[@]}; do
+        local branch_line_number="$(echo "$branch_step_to_remove" | cut -f 1 -d ":")"
+        local line_number=((checkout_line_number + branch_line_number - 1))
+        sed branch_steps_to_remove
+      done
     fi
   done
+
+  cat $file
+  echo
 }
 
 

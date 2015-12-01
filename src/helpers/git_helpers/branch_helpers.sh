@@ -62,6 +62,16 @@ function delete_remote_branch {
 }
 
 
+function delete_remote_branches {
+  local branch_names=$@
+  local cmd='git push origin'
+  for branch_name in ${branch_names[@]}; do
+    cmd="$cmd :$branch_name"
+  done
+  run_command "$cmd"
+}
+
+
 # Deletes the remote branch with the given name
 function delete_remote_only_branch {
   delete_remote_branch "$@"

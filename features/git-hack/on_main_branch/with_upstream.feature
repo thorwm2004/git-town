@@ -12,16 +12,15 @@ Feature: git-hack: on the main branch with a upstream remote
 
   Scenario: result
     Then it runs the commands
-      | BRANCH      | COMMAND                          |
-      | main        | git fetch --prune                |
-      |             | git stash -u                     |
-      |             | git rebase origin/main           |
-      |             | git fetch upstream               |
-      |             | git rebase upstream/main         |
-      |             | git push                         |
-      |             | git checkout -b new-feature main |
-      | new-feature | git push -u main new-feature     |
-      |             | git stash pop                    |
+      | BRANCH      | COMMAND                             |
+      | main        | git fetch --prune                   |
+      |             | git stash -u                        |
+      |             | git rebase origin/main              |
+      |             | git fetch upstream                  |
+      |             | git rebase upstream/main            |
+      |             | git checkout -b new-feature main    |
+      | new-feature | git push -u origin main new-feature |
+      |             | git stash pop                       |
     And I am still on the "new-feature" branch
     And I still have my uncommitted file
     And I have the following commits

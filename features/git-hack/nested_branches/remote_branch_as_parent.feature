@@ -19,17 +19,16 @@ Feature: Forking off a remote branch
 
   Scenario: result
     Then it runs the commands
-      | BRANCH         | COMMAND                                      |
-      | main           | git fetch --prune                            |
-      |                | git stash -u                                 |
-      |                | git rebase origin/main                       |
-      |                | git checkout parent-feature                  |
-      | parent-feature | git merge --no-edit origin/parent-feature    |
-      |                | git merge --no-edit main                     |
-      |                | git push                                     |
-      |                | git checkout -b child-feature parent-feature |
-      | child-feature  | git push -u origin child-feature             |
-      |                | git stash pop                                |
+      | BRANCH         | COMMAND                                         |
+      | main           | git fetch --prune                               |
+      |                | git stash -u                                    |
+      |                | git rebase origin/main                          |
+      |                | git checkout parent-feature                     |
+      | parent-feature | git merge --no-edit origin/parent-feature       |
+      |                | git merge --no-edit main                        |
+      |                | git checkout -b child-feature parent-feature    |
+      | child-feature  | git push -u origin parent-feature child-feature |
+      |                | git stash pop                                   |
     And I end up on the "child-feature" branch
     And I still have my uncommitted file
     And the branch "child_feature" has not been pushed to the repository
