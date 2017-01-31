@@ -1,21 +1,23 @@
-.TH "GIT-TOWN-HACK" "1" "12/26/2016" "Git Town 2\&.1\&.0" "Git Town Manual"
+.TH "GIT-TOWN-PREPEND" "1" "12/26/2016" "Git Town 2\&.1\&.0" "Git Town Manual"
 
 .SH "NAME"
-git town-hack \- create a new feature branch off the main development branch
+git town-prepend \- create a new feature branch between the current branch and its parent
 
 
 .SH "SYNOPSIS"
-\fIgit town-hack\fR <branch_name>
+\fIgit town-prepend\fR <branch_name>
 .br
-\fIgit town-hack\fR (--abort | --continue)
+\fIgit town-prepend\fR (--abort | --continue)
 
 
 .SH "DESCRIPTION"
 
 .PP
-Syncs the main branch,
+Syncs the given parent branch (default: main branch),
 .br
-forks a new feature branch with the given name off it,
+forks a new feature branch with the given name off its parent,
+.br
+makes the new branch the parent of the current branch,
 .br
 pushes the new feature branch to the remote repository,
 .br
@@ -40,3 +42,8 @@ Cancel the operation and reset the workspace to a consistent state.
 
 .IP "--continue" 4
 Continue the operation after resolving conflicts.
+
+.SH "SEE ALSO"
+\fIgit town-append\fR to create a new feature branch as a child of the current branch
+.br
+\fIgit town-hack\fR to create a new top-level feature branch
