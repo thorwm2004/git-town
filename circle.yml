@@ -16,11 +16,13 @@ dependencies:
 
   override:
     - mkdir -p /home/ubuntu/.go_workspace/src/github.com/Originate
+    - echo $GOROOT
+    - echo $GOPATH
     - cp -r /home/ubuntu/git-town /home/ubuntu/.go_workspace/src/github.com/Originate/gt
     - cd /home/ubuntu/.go_workspace/src/github.com/Originate/gt && go install && go get gopkg.in/alecthomas/gometalinter.v1
     - ls -la /home/ubuntu/.go_workspace/bin
     - /home/ubuntu/.go_workspace/bin/gometalinter.v1 --install
-    - rm -rf /home/ubuntu/.go_workspace/src/github.com/Originate/gt
+    # - rm -rf /home/ubuntu/.go_workspace/src/github.com/Originate/gt
     - cd /home/ubuntu/git-town && bundle install
 
   post:
