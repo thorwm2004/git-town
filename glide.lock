@@ -1,5 +1,5 @@
-hash: d576153bffcb3088cc901b219fcac5ff48dfe76de64f8eec66c7ad730ae6a3aa
-updated: 2017-02-07T09:26:00.73392125-08:00
+hash: 33882538798009bdff583e44ba98a48321f50cd4599c31619c6973e7fcd26d55
+updated: 2017-03-01T09:24:39.930702344-08:00
 imports:
 - name: github.com/fsnotify/fsnotify
   version: fd9ec7deca8bf46ecd2a795baaacf2b3a9be1197
@@ -47,6 +47,8 @@ imports:
   subpackages:
   - transform
   - unicode/norm
+- name: gopkg.in/alecthomas/gometalinter.v1
+  version: c5e7d73d2e4e4a33af20af87a7476b941c537e76
 - name: gopkg.in/yaml.v2
   version: a5b47d31c556af34a302ce5d659e6fea44d90de0
 testImports: []
