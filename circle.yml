@@ -15,6 +15,7 @@ dependencies:
     - "~/.cabal"
 
   override:
+    - rm -rf /home/ubuntu/.go_workspace/src
     - mkdir -p /home/ubuntu/.go_workspace/src/github.com/Originate
     - echo $GOROOT
     - echo $GOPATH
