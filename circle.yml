@@ -18,7 +18,7 @@ dependencies:
     - rm -rf /home/ubuntu/.go_workspace/src
     - mkdir -p /home/ubuntu/.go_workspace/src/github.com/Originate
     - cp -r /home/ubuntu/git-town /home/ubuntu/.go_workspace/src/github.com/Originate/gt
-    - cd /home/ubuntu/.go_workspace/src/github.com/Originate/gt && go install && go get gopkg.in/alecthomas/gometalinter.v1
+    - cd /home/ubuntu/.go_workspace/src/github.com/Originate/gt && go install && go install ./vendor/gopkg.in/alecthomas/gometalinter.v1
     - /home/ubuntu/.go_workspace/bin/gometalinter.v1 --install
     - cd /home/ubuntu/git-town && bundle install
 
