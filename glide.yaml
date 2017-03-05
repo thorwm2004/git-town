@@ -2,5 +2,5 @@ package: github.com/Originate/gt
 import:
 - package: github.com/spf13/cobra
 - package: github.com/spf13/viper
-- package: gopkg.in/alecthomas/gometalinter.v1
-  version: v1.1.0
+- package: github.com/alecthomas/gometalinter
+  version: 2c137d148e40e95c566bc68eda12ea21d222e7a8
